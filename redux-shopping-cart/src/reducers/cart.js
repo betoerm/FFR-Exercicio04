@@ -16,7 +16,6 @@ export const cart = (state = initState, action) => {
         }
     };
 
-
     if (action.type === REMOVE_ITEM){
         if (state.products.find(item => item.id === action.product.id)){
             return{
@@ -27,4 +26,6 @@ export const cart = (state = initState, action) => {
 
         return state;
     };
+
+    return state;
 }

@@ -1,28 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { Products } from "../api/Products";
-import ProductItem from "../components/ProductItem";
+import { async } from 'q';
+
+const ProductItem = React.lazy(() => import ("../components/ProductItem"));
 
 export function ProductsView (){
     const [products, setProducts] = useState();
 
-    useEffect(()=> {
-        Products.getProducts().then(
-            result => {
-                setProducts(result);
+
+    async function getProducts(){
+        await Products.getProducts().then(
+            products => {
+                setProducts(products);
             }
         );
-    });
+    }
+
+    useEffect(()=> {
+        getProducts();
+    });    
 
     return(
         <div>            
-            {products.map(item => (
-                <ProductItem key={item.id} product={item}></ProductItem>
-            ))}            
-        </div>
+            <ul>                
+                <Suspense fallback = { <h1>Loading ... </h1>}>
+                    {products.map(item => (
+                            <ProductItem key={item.id} product={item}></ProductItem>                
+                    ))}
+                </Suspense>
+            </ul>
+        </div>        
     )
-
-
-
 }
 
 

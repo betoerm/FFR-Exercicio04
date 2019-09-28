@@ -13,12 +13,12 @@ function Product (item){
         );
     });
 
-    return (
-        
+    return (        
         <div>                       
             <h1>Details</h1>
             <h3>{ product.title }</h3>
-            <img src={product.image && require(`../assets/images/${product.image}`)} alt="" />
+            <img src={product.image && require(`../assets/images/${product.image}`)} 
+                alt={product.title} />
             
             <div>
                 <p> <strong>name:</strong> {product.name}</p>
