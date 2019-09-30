@@ -1,15 +1,18 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Products } from "../api/Products";
 import { addToCart } from "../actions";
 
 function Product (item){
-    const [product, setProduct ] = useState();
 
-    useEffect(()=>{
+    const initialState = {};
+
+    const [product, setProduct ] = useState(initialState);
+
+    useEffect(() => {
         Products.getProductById(item.match.params.id).then(
-            result => {setProduct(result)}
+            result => { setProduct(result) }
         );
     });
 
@@ -21,9 +24,13 @@ function Product (item){
                 alt={product.title} />
             
             <div>
-                <p> <strong>name:</strong> {product.name}</p>
-                <p> <strong>price:</strong> {product.price}</p>
-                <p> <strong>description:</strong> {product.description}</p>
+                <p> <strong>Name: </strong> {product.name}</p>
+                <p> <strong>Price: </strong> {product.price}</p>
+                <p> <strong>Description: </strong> {product.description}</p>
+
+                <button onClick={() => item.addToCart(product)}>
+                    Add to Cart
+                </button>   
             </div>
             <Link to="/cart">View cart</Link>
         </div>

@@ -10,6 +10,7 @@ const Cart = props => (
     <div>
         <ul> 
             <Suspense fallback={<LoadingProduct />}>
+                {console.log(props)}
                 {props.products.map(product => (
                     <ProductCartItem key={product.id} product={product} onRemove={props.removeItem} />
                 ))}
@@ -26,7 +27,6 @@ const Cart = props => (
         </p>
     </div>
 );
-
 
 const mapStateToProps = ({ cart }) => {
     return { products: cart.products };
