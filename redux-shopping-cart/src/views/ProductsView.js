@@ -15,13 +15,15 @@ export function ProductsView (){
     });    
 
     return(
-        <div>            
-            <ul>                
+        <div className="card">            
+            <ul>                               
                 <Suspense fallback = { <h1>Loading ... </h1>}>
                     {products.map(item => (
-                        <ProductItem key={item.id} product={item}></ProductItem>                
+                        <div className="card">
+                            <ProductItem key={item.id} product={item}></ProductItem>                
+                        </div>
                     ))}
-                </Suspense>
+                </Suspense>               
             </ul>
         </div>        
     )

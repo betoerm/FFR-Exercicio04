@@ -17,21 +17,20 @@ function Product (item){
     });
 
     return (        
-        <div>                       
+        <div>             
             <h1>Details</h1>
-            <h3>{ product.title }</h3>
+            <span>{ product.name }</span>
             <img src={product.image && require(`../assets/images/${product.image}`)} 
-                alt={product.title} />
-            
-            <div>
-                <p> <strong>Name: </strong> {product.name}</p>
-                <p> <strong>Price: </strong> {product.price}</p>
-                <p> <strong>Description: </strong> {product.description}</p>
+                alt={product.title} 
+            /> 
+            <p> <strong>Name: </strong> {product.name}</p>
+            <p> <strong>Price: </strong> {product.price}</p>
+            <p> <strong>Description: </strong> {product.description}</p>
 
-                <button onClick={() => item.addToCart(product)}>
-                    Add to Cart
-                </button>   
-            </div>
+            <button onClick={() => item.addToCart(product)}>
+            Add to Cart
+            </button>   
+
             <Link to="/cart">View cart</Link>
         </div>
     )

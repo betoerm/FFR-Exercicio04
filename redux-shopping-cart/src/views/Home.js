@@ -16,7 +16,9 @@ export function Home (){
         <div>
             <ul>
                 {products.map((item) => (
-                    <ProductItem key = { item.id } product = { item }/>
+                    <div className="card">
+                        <ProductItem key = { item.id } product = { item }/>
+                    </div>
                 ))}
             </ul>
         </div>

@@ -3,19 +3,23 @@ import { Link } from "react-router-dom";
 
 export default ({ product }) => {
   return (
-    <li className="product-item">
-      <img
-        src={require(`../assets/images/${product.image}`)}
-        alt={product.title}
-      />
-      <h3>{product.title}</h3>
-      <span className="product-price">
-        <b>Price:</b>
-        {product.price}
-      </span>
-      <p>
-        <Link to={`/product/${product.id}`}>Details</Link>
-      </p>
-    </li>
-  );
+    <div className="card">
+      <li>
+        <div className="card-image">
+          <img src={require(`../assets/images/${product.image}`)}
+            alt={product.title}
+          />
+        </div>
+
+      <div>
+      <span className="card-title">{product.title}</span>
+      <b>Price:</b> {product.price}
+      </div>
+
+      <div>
+      <Link to={`/product/${product.id}`}>Details</Link>
+      </div>
+      </li>
+</div>
+);
 };
